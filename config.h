@@ -3,6 +3,7 @@
 
 #include <QDialog>
 #include <QSettings>
+#include <QHash>
 
 namespace Ui {
 class Config;
@@ -13,7 +14,7 @@ class Config : public QDialog
     Q_OBJECT
 
 public:
-    explicit Config(QStringList *files, QWidget *parent = nullptr);
+    explicit Config(QStringList *files, QHash<QString, int> *screens, QWidget *parent = nullptr);
     ~Config();
 
 private slots:
@@ -27,6 +28,8 @@ private:
     void loadSettings();
     QStringList *_files;
     Ui::Config *ui;
+    QHash<QString, int> *screens;
+    QHash<int, QScreen*> *every_screen = new QHash<int, QScreen*>;
 };
 
 #endif // CONFIG_H

@@ -52,7 +52,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Image</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_3">
@@ -65,7 +65,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Control</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_4">
@@ -124,26 +124,6 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="textEdit_MonitorControlNr">
-   <property name="geometry">
-    <rect>
-     <x>300</x>
-     <y>130</y>
-     <width>31</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPlainTextEdit" name="textEdit_MonitorImageNr">
-   <property name="geometry">
-    <rect>
-     <x>310</x>
-     <y>200</y>
-     <width>31</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
   <widget class="QPushButton" name="button_FolderSelect">
    <property name="geometry">
     <rect>
@@ -168,6 +148,26 @@
    </property>
    <property name="text">
     <string>X</string>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboImageWindow">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>140</y>
+     <width>261</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QComboBox" name="comboControlWindow">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>200</y>
+     <width>261</width>
+     <height>30</height>
+    </rect>
    </property>
   </widget>
  </widget>
