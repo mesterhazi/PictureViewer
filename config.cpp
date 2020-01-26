@@ -14,6 +14,7 @@ Config::Config(QStringList *files, QHash<QString, int> *screens, QWidget *parent
     ui->setupUi(this);
     int biggest, smallest;
     QList<QScreen*> temp_screens;
+    QString list_item_screen;
     // get every available screen (=monitor)
     temp_screens = QGuiApplication::screens();
 
@@ -31,7 +32,6 @@ Config::Config(QStringList *files, QHash<QString, int> *screens, QWidget *parent
             biggest = idx;
         if (every_screen->value(idx) < every_screen->value(smallest))
             smallest = idx;
-        QString list_item_screen;
 
         list_item_screen = temp->name() + " - " + QString::number(temp->size().width()) + "x" + QString::number(temp->size().height());
         ui->comboImageWindow->addItem(list_item_screen, idx);
@@ -108,7 +108,7 @@ void Config::on_Config_accepted()
         }
     }
 
-    screens->insert("image", ui->comboImageWindow->currentData().Int);
-    screens->insert("control", ui->comboControlWindow->currentData().Int);
+    screens->insert("image", ui->comboImageWindow->itemData(ui->comboImageWindow->currentIndex()).toInt());
+    screens->insert("control", ui->comboControlWindow->currentData().toInt());
     Config::saveSettings();
 }

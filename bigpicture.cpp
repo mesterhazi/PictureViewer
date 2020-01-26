@@ -1,6 +1,7 @@
 #include "bigpicture.h"
 #include "ui_bigpicture.h"
 #include <QWindow>
+#include <QScreen>
 
 //BigPicture::BigPicture(QList<image_item*> *pics, QWidget *parent) :
 //    QWidget(parent),
@@ -34,8 +35,10 @@ BigPicture::BigPicture(QList<image_item*> *pics, QScreen *screen)
     _pics = pics;
     labelImage = new QLabel;
     labelImage->setWindowFlag(Qt::SplashScreen);
-    labelImage->windowHandle()->setScreen(screen);
-    labelImage->showMaximized();
+    labelImage->setStyleSheet("QLabel { background-color : black; }");
+    labelImage->show();
+    labelImage->move(screen->geometry().topLeft());
+    labelImage->showFullScreen();
 
 }
 
@@ -46,4 +49,5 @@ BigPicture::~BigPicture()
 void BigPicture::updateImage(QPixmap img)
 {
     labelImage->setPixmap(img.scaled(800, 600, Qt::KeepAspectRatio));
+    labelImage->setAlignment(Qt::AlignCenter);
 }

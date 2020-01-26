@@ -5,6 +5,7 @@
 
 #include <QApplication>
 #include <QGuiApplication>
+#include <QWindow>
 
 QList<QScreen*> *screens;
 
@@ -23,6 +24,5 @@ int main(int argc, char *argv[])
         return 1;
     }
     w = new Control(files, all_pics, screens);
-    w->show();
     return a.exec();
 }

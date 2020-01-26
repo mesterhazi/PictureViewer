@@ -5,27 +5,6 @@
 #include <QLabel>
 #include "image_item.h"
 
-//namespace Ui {
-//class BigPicture;
-//}
-
-//class BigPicture : public QWidget
-//{
-//    Q_OBJECT
-
-//public:
-//    explicit BigPicture(QList<image_item*> *pics, QWidget *parent = nullptr);
-//    ~BigPicture();
-//    void updateImage(image_item img);
-//    void updateImage(QPixmap img);
-
-//private:
-//    Ui::BigPicture *ui;
-//    QList<image_item*> *_pics;
-//};
-
-
-class BigPicture;
 
 class BigPicture
 {
@@ -34,7 +13,6 @@ class BigPicture
 public:
     explicit BigPicture(QList<image_item*> *pics, QScreen *screen);
     ~BigPicture();
-//    void updateImage(image_item img);
     void updateImage(QPixmap img);
 
 private:

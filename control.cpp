@@ -12,13 +12,15 @@ Control::Control(QStringList *files, QList<image_item*> *pics, QHash<QString, in
     QList<QScreen*> temp_screens;
     // get every available screen (=monitor)
     temp_screens = QGuiApplication::screens();
-
+    int idx = screens->value("image");
     _pic_window = new BigPicture(pics, temp_screens[screens->value("image")]);
-    this->windowHandle()->setScreen(temp_screens[screens->value("control")]);
+
     ui->setupUi(this);
     ui->listView_thumbnails->setModel(new ImageListModel(*files, pics, ui->listView_thumbnails));
     ui->listView_thumbnails->setViewMode(QListView::IconMode);
     ui->listView_thumbnails->setFlow(QListView::Flow::TopToBottom);
+    this->show();
+    this->move(temp_screens[screens->value("control")]->geometry().topLeft());
 
 //    _pic_window->show();
     _pic_window->updateImage(ui->listView_thumbnails->model()->index(0, 0).data(ImageListModel::FullScaleRole).value<QPixmap>());
