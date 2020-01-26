@@ -23,7 +23,7 @@ public:
         FullScaleRole = NewRole + 2,
     };
     //  TODO:is this a good parameter type? what can I get from a folder?
-    ImageListModel(QStringList paths, QList<image_item*> *pics, QObject *parent = 0);
+    ImageListModel(QStringList paths, QList<image_item*> *pics, QSize thumbnail_size, QObject *parent = 0);
     ~ImageListModel();
 
     // needed by QAbstractListModel

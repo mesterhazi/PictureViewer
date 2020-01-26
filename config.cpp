@@ -6,7 +6,7 @@
 #include <QGuiApplication>
 #include <QVariant>
 
-Config::Config(QStringList *files, QHash<QString, int> *screens, QWidget *parent) :
+Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Config)
 {
@@ -19,6 +19,7 @@ Config::Config(QStringList *files, QHash<QString, int> *screens, QWidget *parent
     temp_screens = QGuiApplication::screens();
 
     this->screens = screens;
+    this->thumbnail_size = thumbnail_size;
 
     // add monitors to the screen selector combo
     auto iter = temp_screens.begin();
@@ -58,16 +59,16 @@ Config::~Config()
 void Config::saveSettings()
 {
     settings->setValue("config/folderurl", ui->textEdit_FolderDir->toPlainText());
-    settings->setValue("config/grid_cols", ui->textEdit_PreviewCols->toPlainText());
-    settings->setValue("config/grid_rows", ui->textEdit_PreviewRows->toPlainText());
+    settings->setValue("config/thumbnail_width", ui->textEdit_ThumbnailWidth->toPlainText());
+    settings->setValue("config/thumbnail_height", ui->textEdit_ThumbnailHeight->toPlainText());
     settings->sync();
 }
 
 void Config::loadSettings()
 {
     ui->textEdit_FolderDir->setPlainText(settings->value("config/folderurl").toString());
-    ui->textEdit_PreviewCols->setPlainText(settings->value("config/grid_cols").toString());
-    ui->textEdit_PreviewRows->setPlainText(settings->value("config/grid_rows").toString());
+    ui->textEdit_ThumbnailWidth->setPlainText(settings->value("config/thumbnail_width").toString());
+    ui->textEdit_ThumbnailHeight->setPlainText(settings->value("config/thumbnail_height").toString());
 
 }
 
@@ -107,6 +108,10 @@ void Config::on_Config_accepted()
             iter ++;
         }
     }
+
+    // TODO: try-catch
+    thumbnail_size->setWidth(ui->textEdit_ThumbnailWidth->toPlainText().toInt());
+    thumbnail_size->setHeight(ui->textEdit_ThumbnailHeight->toPlainText().toInt());
 
     screens->insert("image", ui->comboImageWindow->itemData(ui->comboImageWindow->currentIndex()).toInt());
     screens->insert("control", ui->comboControlWindow->currentData().toInt());

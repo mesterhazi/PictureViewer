@@ -104,22 +104,22 @@
     </rect>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="textEdit_PreviewCols">
+  <widget class="QPlainTextEdit" name="textEdit_ThumbnailWidth">
    <property name="geometry">
     <rect>
-     <x>720</x>
+     <x>700</x>
      <y>120</y>
-     <width>31</width>
+     <width>71</width>
      <height>41</height>
     </rect>
    </property>
   </widget>
-  <widget class="QPlainTextEdit" name="textEdit_PreviewRows">
+  <widget class="QPlainTextEdit" name="textEdit_ThumbnailHeight">
    <property name="geometry">
     <rect>
-     <x>780</x>
+     <x>810</x>
      <y>120</y>
-     <width>31</width>
+     <width>71</width>
      <height>41</height>
     </rect>
    </property>
@@ -140,7 +140,7 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>760</x>
+     <x>780</x>
      <y>130</y>
      <width>16</width>
      <height>22</height>

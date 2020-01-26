@@ -15,7 +15,7 @@ class Control : public QMainWindow
     Q_OBJECT
 
 public:
-    explicit Control(QStringList *files, QList<image_item*> *pics, QHash<QString, int> *screens, QWidget *parent = nullptr);
+    explicit Control(QStringList *files, QList<image_item*> *pics, QSize thumbnail_size, QHash<QString, int> *screens, QWidget *parent = nullptr);
     ~Control();
 
 private slots:

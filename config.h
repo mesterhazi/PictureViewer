@@ -14,7 +14,7 @@ class Config : public QDialog
     Q_OBJECT
 
 public:
-    explicit Config(QStringList *files, QHash<QString, int> *screens, QWidget *parent = nullptr);
+    explicit Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QWidget *parent = nullptr);
     ~Config();
 
 private slots:
@@ -28,6 +28,7 @@ private:
     void loadSettings();
     QStringList *_files;
     Ui::Config *ui;
+    QSize *thumbnail_size;
     QHash<QString, int> *screens;
     QHash<int, QScreen*> *every_screen = new QHash<int, QScreen*>;
 };

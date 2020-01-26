@@ -3,6 +3,7 @@
 
 #include <QWidget>
 #include <QLabel>
+#include <QSize>
 #include "image_item.h"
 
 
@@ -18,6 +19,7 @@ public:
 private:
     QLabel *labelImage;
     QList<image_item*> *_pics;
+    QSize screen_size;
 };
 
 #endif // BIGPICTURE_H

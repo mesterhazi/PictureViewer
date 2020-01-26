@@ -16,13 +16,14 @@ int main(int argc, char *argv[])
     QStringList *files = new QStringList();
     QList<image_item*>* all_pics = new QList<image_item*>;
     QHash<QString, int> *screens = new QHash<QString, int>;
-    Config *conf_win = new Config(files, screens);
+    QSize thumbnail_size;
+    Config *conf_win = new Config(files, screens, &thumbnail_size);
     Control *w;
 
     if(conf_win->exec() != QDialog::Accepted)
     {
         return 1;
     }
-    w = new Control(files, all_pics, screens);
+    w = new Control(files, all_pics, thumbnail_size, screens);
     return a.exec();
 }

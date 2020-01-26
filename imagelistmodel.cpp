@@ -1,6 +1,6 @@
 #include "imagelistmodel.h"
 
-ImageListModel::ImageListModel(QStringList paths, QList<image_item*> *pics, QObject *parent)
+ImageListModel::ImageListModel(QStringList paths, QList<image_item*> *pics, QSize thumbnail_size, QObject *parent)
 : QAbstractListModel(parent)
 {
     pics = &_data;
@@ -12,7 +12,7 @@ ImageListModel::ImageListModel(QStringList paths, QList<image_item*> *pics, QObj
         image_item *actual = new image_item();
         actual->_file = *iter;
         actual->_fullsize = fullpic;
-        actual->_thumbnail = fullpic.scaled(250, 250, Qt::KeepAspectRatio, Qt::SmoothTransformation);
+        actual->_thumbnail = fullpic.scaled(thumbnail_size.width(), thumbnail_size.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
 
         _data.append(actual);
         iter ++;

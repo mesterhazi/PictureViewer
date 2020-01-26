@@ -39,6 +39,8 @@ BigPicture::BigPicture(QList<image_item*> *pics, QScreen *screen)
     labelImage->show();
     labelImage->move(screen->geometry().topLeft());
     labelImage->showFullScreen();
+    screen_size.setWidth(screen->size().width());
+    screen_size.setHeight(screen->size().height());
 
 }
 
@@ -48,6 +50,6 @@ BigPicture::~BigPicture()
 
 void BigPicture::updateImage(QPixmap img)
 {
-    labelImage->setPixmap(img.scaled(800, 600, Qt::KeepAspectRatio));
+    labelImage->setPixmap(img.scaled(screen_size.width(), screen_size.height(), Qt::KeepAspectRatio));
     labelImage->setAlignment(Qt::AlignCenter);
 }
