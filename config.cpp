@@ -54,7 +54,7 @@ Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnai
     interaction_timeout = new QTimer(this);
     connect(interaction_timeout, SIGNAL(timeout()), this, SLOT(accept()));
     interaction_timeout->setSingleShot(true);
-    interaction_timeout->start(5000);
+    restart_timeout();
 }
 
 Config::~Config()
@@ -92,6 +92,8 @@ void Config::on_button_FolderSelect_clicked()
     }
     folder_url = file_selector.getExistingDirectoryUrl(this, "Folder containing the pictures", folder_url);
     ui->textEdit_FolderDir->setPlainText(folder_url.toString(QUrl::RemoveScheme));
+
+    restart_timeout();
 }
 
 void Config::on_Config_accepted()
@@ -122,4 +124,29 @@ void Config::on_Config_accepted()
     screens->insert("image", ui->comboImageWindow->itemData(ui->comboImageWindow->currentIndex()).toInt());
     screens->insert("control", ui->comboControlWindow->currentData().toInt());
     Config::saveSettings();
+}
+
+void Config::restart_timeout()
+{
+    interaction_timeout->start(Config::timeout_ms);
+}
+
+void Config::on_comboImageWindow_activated(int index)
+{
+    restart_timeout();
+}
+
+void Config::on_comboControlWindow_activated(int index)
+{
+    restart_timeout();
+}
+
+void Config::on_textEdit_ThumbnailWidth_textChanged()
+{
+    restart_timeout();
+}
+
+void Config::on_textEdit_ThumbnailHeight_textChanged()
+{
+    restart_timeout();
 }

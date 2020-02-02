@@ -22,6 +22,14 @@ private slots:
 
     void on_Config_accepted();
 
+    void on_comboImageWindow_activated(int index);
+
+    void on_comboControlWindow_activated(int index);
+
+    void on_textEdit_ThumbnailWidth_textChanged();
+
+    void on_textEdit_ThumbnailHeight_textChanged();
+
 private:
     QSettings *settings;
     void saveSettings();
@@ -30,6 +38,8 @@ private:
     Ui::Config *ui;
     QSize *thumbnail_size;
     QTimer *interaction_timeout;
+    const int timeout_ms = 30000;
+    void restart_timeout();
     QHash<QString, int> *screens;
     QHash<int, QScreen*> *every_screen = new QHash<int, QScreen*>;
 };
