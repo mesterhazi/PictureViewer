@@ -5,6 +5,7 @@
 #include <QScreen>
 #include <QGuiApplication>
 #include <QVariant>
+#include <QTimer>
 
 Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QWidget *parent) :
     QDialog(parent),
@@ -49,6 +50,11 @@ Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnai
 
     settings = new QSettings("adamthebaddest", "PictureViewer");
     Config::loadSettings();
+
+    interaction_timeout = new QTimer(this);
+    connect(interaction_timeout, SIGNAL(timeout()), this, SLOT(accept()));
+    interaction_timeout->setSingleShot(true);
+    interaction_timeout->start(5000);
 }
 
 Config::~Config()

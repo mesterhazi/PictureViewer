@@ -29,6 +29,7 @@ private:
     QStringList *_files;
     Ui::Config *ui;
     QSize *thumbnail_size;
+    QTimer *interaction_timeout;
     QHash<QString, int> *screens;
     QHash<int, QScreen*> *every_screen = new QHash<int, QScreen*>;
 };
