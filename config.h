@@ -5,6 +5,8 @@
 #include <QSettings>
 #include <QHash>
 
+#define DEFAULT_AUTOSTART_TIMEOUT 30
+
 namespace Ui {
 class Config;
 }
@@ -26,11 +28,18 @@ private slots:
 
     void on_comboControlWindow_activated(int index);
 
-    void on_textEdit_ThumbnailWidth_textChanged();
-
-    void on_textEdit_ThumbnailHeight_textChanged();
-
     void handle_timeout();
+
+
+    void on_lineEdit_AutoStartTimeout_editingFinished();
+
+    void on_lineEdit_SlideshowTimeout_editingFinished();
+
+    void on_lineEdit_ScreensaverTimeout_editingFinished();
+
+    void on_lineEdit_ThumbnailWidth_editingFinished();
+
+    void on_lineEdit_ThumbnailHeight_editingFinished();
 
 private:
     QSettings *settings;
@@ -41,7 +50,8 @@ private:
     QSize *thumbnail_size;
     QTimer *interaction_timeout;
     static const int timer_update_ms = 1000;
-    static const int max_timeout_s = 30;
+
+    int max_timeout_s;
     int timeout_s;
     void restart_timeout();
     QHash<QString, int> *screens;

@@ -71,14 +71,14 @@
   <widget class="QLabel" name="label_4">
    <property name="geometry">
     <rect>
-     <x>630</x>
-     <y>130</y>
-     <width>67</width>
+     <x>21</x>
+     <y>270</y>
+     <width>111</width>
      <height>22</height>
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>Thumbnail size</string>
    </property>
   </widget>
   <widget class="QLabel" name="label_AutoLoadCounter">
@@ -91,7 +91,7 @@
     </rect>
    </property>
    <property name="text">
-    <string>TextLabel</string>
+    <string>30s remaining util automatic start</string>
    </property>
   </widget>
   <widget class="QPlainTextEdit" name="textEdit_FolderDir">
@@ -100,26 +100,6 @@
      <x>43</x>
      <y>54</y>
      <width>661</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPlainTextEdit" name="textEdit_ThumbnailWidth">
-   <property name="geometry">
-    <rect>
-     <x>700</x>
-     <y>120</y>
-     <width>71</width>
-     <height>41</height>
-    </rect>
-   </property>
-  </widget>
-  <widget class="QPlainTextEdit" name="textEdit_ThumbnailHeight">
-   <property name="geometry">
-    <rect>
-     <x>810</x>
-     <y>120</y>
-     <width>71</width>
      <height>41</height>
     </rect>
    </property>
@@ -140,8 +120,8 @@
   <widget class="QLabel" name="label_5">
    <property name="geometry">
     <rect>
-     <x>785</x>
-     <y>130</y>
+     <x>220</x>
+     <y>270</y>
      <width>21</width>
      <height>22</height>
     </rect>
@@ -166,6 +146,95 @@
      <x>130</x>
      <y>200</y>
      <width>261</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_6">
+   <property name="geometry">
+    <rect>
+     <x>526</x>
+     <y>140</y>
+     <width>151</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Autostart timeout [s]</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_7">
+   <property name="geometry">
+    <rect>
+     <x>526</x>
+     <y>220</y>
+     <width>161</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Slideshow timeout  [s]</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="label_8">
+   <property name="geometry">
+    <rect>
+     <x>530</x>
+     <y>290</y>
+     <width>171</width>
+     <height>22</height>
+    </rect>
+   </property>
+   <property name="text">
+    <string>Screensaver timeout [s]</string>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_AutoStartTimeout">
+   <property name="geometry">
+    <rect>
+     <x>700</x>
+     <y>140</y>
+     <width>81</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_ScreensaverTimeout">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>290</y>
+     <width>81</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_SlideshowTimeout">
+   <property name="geometry">
+    <rect>
+     <x>720</x>
+     <y>220</y>
+     <width>81</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_ThumbnailHeight">
+   <property name="geometry">
+    <rect>
+     <x>240</x>
+     <y>260</y>
+     <width>81</width>
+     <height>30</height>
+    </rect>
+   </property>
+  </widget>
+  <widget class="QLineEdit" name="lineEdit_ThumbnailWidth">
+   <property name="geometry">
+    <rect>
+     <x>130</x>
+     <y>260</y>
+     <width>81</width>
      <height>30</height>
     </rect>
    </property>

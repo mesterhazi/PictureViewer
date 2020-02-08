@@ -53,9 +53,10 @@ Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnai
     settings = new QSettings("adamthebaddest", "PictureViewer");
     Config::loadSettings();
 
+    /* Timer setup for aut starting after a certain time */
+    Config::max_timeout_s = DEFAULT_AUTOSTART_TIMEOUT;
     interaction_timeout = new QTimer(this);
     auto con = connect(interaction_timeout, SIGNAL(timeout()), this, SLOT(handle_timeout()));
-    qDebug() << "con:" << con ;
     interaction_timeout->setSingleShot(false);
     restart_timeout();
     interaction_timeout->start(1000);
@@ -69,16 +70,18 @@ Config::~Config()
 void Config::saveSettings()
 {
     settings->setValue("config/folderurl", ui->textEdit_FolderDir->toPlainText());
-    settings->setValue("config/thumbnail_width", ui->textEdit_ThumbnailWidth->toPlainText());
-    settings->setValue("config/thumbnail_height", ui->textEdit_ThumbnailHeight->toPlainText());
+    settings->setValue("config/thumbnail_width", ui->lineEdit_ThumbnailWidth->text());
+    settings->setValue("config/thumbnail_height", ui->lineEdit_ThumbnailHeight->text());
+    settings->setValue("config/autostart_timeout", ui->lineEdit_AutoStartTimeout->text());
     settings->sync();
 }
 
 void Config::loadSettings()
 {
     ui->textEdit_FolderDir->setPlainText(settings->value("config/folderurl").toString());
-    ui->textEdit_ThumbnailWidth->setPlainText(settings->value("config/thumbnail_width").toString());
-    ui->textEdit_ThumbnailHeight->setPlainText(settings->value("config/thumbnail_height").toString());
+    ui->lineEdit_ThumbnailWidth->setText(settings->value("config/thumbnail_width").toString());
+    ui->lineEdit_ThumbnailHeight->setText(settings->value("config/thumbnail_height").toString());
+    ui->lineEdit_AutoStartTimeout->setText(settings->value("config/autostart_timeout").toString());
 
 }
 
@@ -123,8 +126,8 @@ void Config::on_Config_accepted()
     }
 
     // TODO: try-catch
-    thumbnail_size->setWidth(ui->textEdit_ThumbnailWidth->toPlainText().toInt());
-    thumbnail_size->setHeight(ui->textEdit_ThumbnailHeight->toPlainText().toInt());
+    thumbnail_size->setWidth(ui->lineEdit_ThumbnailWidth->text().toUInt());
+    thumbnail_size->setHeight(ui->lineEdit_ThumbnailHeight->text().toUInt());
 
     screens->insert("image", ui->comboImageWindow->itemData(ui->comboImageWindow->currentIndex()).toInt());
     screens->insert("control", ui->comboControlWindow->currentData().toInt());
@@ -139,7 +142,7 @@ void Config::restart_timeout()
 void Config::handle_timeout()
 {
     timeout_s --;
-    if(timeout_s == 0)
+    if(timeout_s <= 0)
     {
         Config::accept();
     }
@@ -160,12 +163,32 @@ void Config::on_comboControlWindow_activated(int index)
     restart_timeout();
 }
 
-void Config::on_textEdit_ThumbnailWidth_textChanged()
+void Config::on_lineEdit_AutoStartTimeout_editingFinished()
+{
+    restart_timeout();
+    try {
+        Config::max_timeout_s = ui->lineEdit_AutoStartTimeout->text().toUInt();
+    } catch (...) {
+
+    }
+}
+
+void Config::on_lineEdit_SlideshowTimeout_editingFinished()
 {
     restart_timeout();
 }
 
-void Config::on_textEdit_ThumbnailHeight_textChanged()
+void Config::on_lineEdit_ScreensaverTimeout_editingFinished()
+{
+    restart_timeout();
+}
+
+void Config::on_lineEdit_ThumbnailWidth_editingFinished()
+{
+    restart_timeout();
+}
+
+void Config::on_lineEdit_ThumbnailHeight_editingFinished()
 {
     restart_timeout();
 }
