@@ -30,6 +30,8 @@ private slots:
 
     void on_textEdit_ThumbnailHeight_textChanged();
 
+    void handle_timeout();
+
 private:
     QSettings *settings;
     void saveSettings();
@@ -38,7 +40,9 @@ private:
     Ui::Config *ui;
     QSize *thumbnail_size;
     QTimer *interaction_timeout;
-    const int timeout_ms = 30000;
+    static const int timer_update_ms = 1000;
+    static const int max_timeout_s = 30;
+    int timeout_s;
     void restart_timeout();
     QHash<QString, int> *screens;
     QHash<int, QScreen*> *every_screen = new QHash<int, QScreen*>;

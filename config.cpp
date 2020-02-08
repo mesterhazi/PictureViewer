@@ -7,6 +7,8 @@
 #include <QVariant>
 #include <QTimer>
 
+#include <QDebug>
+
 Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Config)
@@ -52,9 +54,11 @@ Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnai
     Config::loadSettings();
 
     interaction_timeout = new QTimer(this);
-    connect(interaction_timeout, SIGNAL(timeout()), this, SLOT(accept()));
-    interaction_timeout->setSingleShot(true);
+    auto con = connect(interaction_timeout, SIGNAL(timeout()), this, SLOT(handle_timeout()));
+    qDebug() << "con:" << con ;
+    interaction_timeout->setSingleShot(false);
     restart_timeout();
+    interaction_timeout->start(1000);
 }
 
 Config::~Config()
@@ -91,6 +95,7 @@ void Config::on_button_FolderSelect_clicked()
         file_selector.setDirectory(folder_url_str);
     }
     folder_url = file_selector.getExistingDirectoryUrl(this, "Folder containing the pictures", folder_url);
+
     ui->textEdit_FolderDir->setPlainText(folder_url.toString(QUrl::RemoveScheme));
 
     restart_timeout();
@@ -128,7 +133,21 @@ void Config::on_Config_accepted()
 
 void Config::restart_timeout()
 {
-    interaction_timeout->start(Config::timeout_ms);
+    Config::timeout_s = Config::max_timeout_s;
+}
+
+void Config::handle_timeout()
+{
+    timeout_s --;
+    if(timeout_s == 0)
+    {
+        Config::accept();
+    }
+    else
+    {
+        QString msg = "Starting automatically in " + QString::number(timeout_s) + "s!";
+        ui->label_AutoLoadCounter->setText(msg);
+    }
 }
 
 void Config::on_comboImageWindow_activated(int index)
