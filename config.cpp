@@ -73,6 +73,8 @@ void Config::saveSettings()
     settings->setValue("config/thumbnail_width", ui->lineEdit_ThumbnailWidth->text());
     settings->setValue("config/thumbnail_height", ui->lineEdit_ThumbnailHeight->text());
     settings->setValue("config/autostart_timeout", ui->lineEdit_AutoStartTimeout->text());
+    settings->setValue("config/slideshow_timeout", ui->lineEdit_SlideshowTimeout->text());
+    settings->setValue("config/screensaver_timeout", ui->lineEdit_ScreensaverTimeout->text());
     settings->sync();
 }
 
@@ -82,6 +84,8 @@ void Config::loadSettings()
     ui->lineEdit_ThumbnailWidth->setText(settings->value("config/thumbnail_width").toString());
     ui->lineEdit_ThumbnailHeight->setText(settings->value("config/thumbnail_height").toString());
     ui->lineEdit_AutoStartTimeout->setText(settings->value("config/autostart_timeout").toString());
+    ui->lineEdit_SlideshowTimeout->setText(settings->value("config/slideshow_timeout").toString());
+    ui->lineEdit_ScreensaverTimeout->setText(settings->value("config/screensaver_timeout").toString());
 
 }
 
