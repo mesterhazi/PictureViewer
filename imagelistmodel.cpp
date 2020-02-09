@@ -13,7 +13,6 @@ ImageListModel::ImageListModel(QStringList paths, QList<image_item*> *pics, QSiz
         actual->_file = *iter;
         actual->_fullsize = fullpic;
         actual->_thumbnail = fullpic.scaled(thumbnail_size.width(), thumbnail_size.height(), Qt::KeepAspectRatio, Qt::SmoothTransformation);
-
         _data.append(actual);
         iter ++;
     }

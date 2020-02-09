@@ -31,6 +31,7 @@ public:
     QVariant data(const QModelIndex &index, int role) const;
 
 private:
+    static int id_generator;
     QList<image_item*> _data;
 };
 

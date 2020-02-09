@@ -16,7 +16,7 @@ class Config : public QDialog
     Q_OBJECT
 
 public:
-    explicit Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QWidget *parent = nullptr);
+    explicit Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QList<int> *slideshow_timeouts, QWidget *parent = nullptr);
     ~Config();
 
 private slots:
@@ -53,6 +53,7 @@ private:
 
     int max_timeout_s;
     int timeout_s;
+    QList<int> *_slideshow_timeouts;
     void restart_timeout();
     QHash<QString, int> *screens;
     QHash<int, QScreen*> *every_screen = new QHash<int, QScreen*>;

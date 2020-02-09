@@ -9,11 +9,12 @@
 
 #include <QDebug>
 
-Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QWidget *parent) :
+Config::Config(QStringList *files, QHash<QString, int> *screens, QSize *thumbnail_size, QList<int> *slideshow_timeouts, QWidget *parent) :
     QDialog(parent),
     ui(new Ui::Config)
 {
     _files = files;
+    _slideshow_timeouts = slideshow_timeouts;
     ui->setupUi(this);
     int biggest, smallest;
     QList<QScreen*> temp_screens;
@@ -132,6 +133,9 @@ void Config::on_Config_accepted()
     // TODO: try-catch
     thumbnail_size->setWidth(ui->lineEdit_ThumbnailWidth->text().toUInt());
     thumbnail_size->setHeight(ui->lineEdit_ThumbnailHeight->text().toUInt());
+
+    _slideshow_timeouts->append(ui->lineEdit_SlideshowTimeout->text().toUInt());
+    _slideshow_timeouts->append(ui->lineEdit_ScreensaverTimeout->text().toUInt());
 
     screens->insert("image", ui->comboImageWindow->itemData(ui->comboImageWindow->currentIndex()).toInt());
     screens->insert("control", ui->comboControlWindow->currentData().toInt());
